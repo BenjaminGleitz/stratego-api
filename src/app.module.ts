@@ -5,11 +5,12 @@ import { GamesModule } from './games/games.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HintsModule } from './hints/hints.module';
 import { EventsModule } from './events/events.module';
+import { AppGateway } from './events/app.gateway';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-    type: 'mysql',
+    type: 'mariadb',
     host: 'localhost',
     port: 3306,
     username: 'root',
@@ -22,7 +23,7 @@ import { EventsModule } from './events/events.module';
     HintsModule,
     EventsModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule { }
 
