@@ -8,6 +8,7 @@ import { Repository } from "typeorm";
 @Injectable()
 export class GamesService {
 
+	// Benjamin-GLEITZ
 	constructor(@InjectRepository(Game) private data: Repository<Game>) { }
 
 	async create(dto: CreateGameDto): Promise<Game> {
@@ -29,13 +30,8 @@ export class GamesService {
 		return found;
 	}
 
-	async update(id: number, dto: UpdateGameDto): Promise<Game> {
-		try {
-			await this.data.update(id, dto);
-		} catch (e) {
-			throw new ConflictException();
-		}
-		return this.findOne(id);
+	async update(id: number, dto: UpdateGameDto) {
+		//!TO-DO
 	}
 
 	async remove(id: number): Promise<void> {
