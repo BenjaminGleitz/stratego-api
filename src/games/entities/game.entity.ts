@@ -21,12 +21,12 @@ export class Game {
     @Column({name: 'status', type: "enum", enum: StatusType, default: StatusType.OPENED})
     status: StatusType;
 
-    @Column({name: 'blue_setup',})
+    @Column({name: 'blue_setup', nullable: true})
     blueSetup: String;
 
-    @Column({name: 'red_setup',})
+    @Column({name: 'red_setup',nullable: true})
     redSetup: String;
 
-    @Column()
+    @Column({name: 'currentBoard', default: "test"})
     currentBoard: String;
 }
