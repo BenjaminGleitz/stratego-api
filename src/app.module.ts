@@ -11,11 +11,11 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-    type: 'mysql',
+    type: 'mariadb',
     host: 'localhost',
-    port: 3306,
+    port: 3308,
     username: 'root',
-    password: '',
+    password: 'C11R01CsC&MARIADB',
     database: 'stratego',
     autoLoadEntities: true,
     synchronize: true
