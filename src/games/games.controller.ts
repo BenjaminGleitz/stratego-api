@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { GamesService } from './games.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { StatusType } from './enums/status-type.enum';
+import { Game } from './entities/game.entity';
 
 @Controller('games')
 export class GamesController {
@@ -21,6 +23,11 @@ export class GamesController {
 	findOne(@Param('id') id: string) {
 		return this.gamesService.findOne(+id);
 	}
+
+	@Get('status/:status')
+    async getGamesByStatus(@Param('status') status: StatusType): Promise<Game[]> {
+        return this.gamesService.getGamesByStatus(status);
+    }
 
 	@Patch(':id')
 	update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
