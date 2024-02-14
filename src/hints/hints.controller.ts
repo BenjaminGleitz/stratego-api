@@ -5,8 +5,7 @@ import { HintsService } from './hints.service';
 @Controller('hints')
 export class HintsController {
     constructor(private readonly hintsService: HintsService) {}
-
-    @Get('random-winning-game')
+    @Get()
     async getRandomWinningGame() {
         return this.hintsService.findRandomWinningGame();
     }
