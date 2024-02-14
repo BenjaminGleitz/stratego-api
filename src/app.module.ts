@@ -5,7 +5,7 @@ import { GamesModule } from './games/games.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HintsModule } from './hints/hints.module';
 import { EventsModule } from './events/events.module';
-import { AppGateway } from './events/app.gateway';
+import { AppGateway } from './app.gateway';
 import { ExpressAdapter } from '@nestjs/platform-express';
 
 @Module({
@@ -13,9 +13,9 @@ import { ExpressAdapter } from '@nestjs/platform-express';
     TypeOrmModule.forRoot({
     type: 'mariadb',
     host: 'localhost',
-    port: 3308,
+    port: 3306,
     username: 'root',
-    password: 'C11R01CsC&MARIADB',
+    password: '',
     database: 'stratego',
     autoLoadEntities: true,
     synchronize: true

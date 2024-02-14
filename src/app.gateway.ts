@@ -3,26 +3,26 @@ import { ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WebSo
 import { Server, Socket } from "socket.io";
 
 @WebSocketGateway()
-export class EventsGateway{
+export class AppGateway{
     private static LOGGER :Logger = new Logger('Gateway');
     private static CHANNEL = "message";
 
     @WebSocketServer()
     private server : Server;
 
-    handdleConnextion(socket: Socket) {
+    handleConnection(socket: Socket) {
         const ip = socket.client.conn.remoteAddress;
-        this.server.emit(EventsGateway.CHANNEL, `Welcome @${socket.id} on @${ip} !`)
+        this.server.emit(AppGateway.CHANNEL, `Welcome @${socket.id} on @${ip} !`)
     }
 
-    @SubscribeMessage(EventsGateway.CHANNEL)
+    @SubscribeMessage(AppGateway.CHANNEL)
     handleMessage(@ConnectedSocket() socket: Socket,@MessageBody() message: string){
-        EventsGateway.LOGGER.log(`Gateway <- ${socket.id} ${message}`);
-        socket.broadcast.emit(EventsGateway.CHANNEL, `@${socket.id} ${message}`);
+        AppGateway.LOGGER.log(`Gateway <- ${socket.id} ${message}`);
+        socket.broadcast.emit(AppGateway.CHANNEL, `@${socket.id} ${message}`);
         return "ok";
     }
     handleDisconnect(socket: Socket) {
         const ip = socket.client.conn.remoteAddress;
-        this.server.emit(EventsGateway.CHANNEL, `@${socket.id} --> gone`);
+        this.server.emit(AppGateway.CHANNEL, `@${socket.id} --> gone`);
     }
 }
