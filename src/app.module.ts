@@ -15,7 +15,7 @@ import { ExpressAdapter } from '@nestjs/platform-express';
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: '',
+    password: 'root',
     database: 'stratego',
     autoLoadEntities: true,
     synchronize: true
