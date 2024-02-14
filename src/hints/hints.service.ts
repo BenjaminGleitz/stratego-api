@@ -13,19 +13,19 @@ export class HintsService {
 
     async findRandomWinningGame(): Promise<Hint> {
         const winningGames = await this.hintsRepository.find({
-          where: {
-            win_lose: 'win'
-          },
-          order: {
-            date_played: 'DESC'
-          },
-          take: 10
+            where: {
+                win_lose: 'win'
+            },
+            order: {
+                date_played: 'DESC'
+            },
+            take: 10
         });
-      
+
         if (winningGames.length === 0) {
-          throw new Error('Aucune partie gagnante disponible.');
+            throw new Error('Aucune partie gagnante disponible.');
         }
-      
+
         const randomIndex = Math.floor(Math.random() * winningGames.length);
         return winningGames[randomIndex];
     }
